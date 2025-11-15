@@ -5,7 +5,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <link rel="shortcut icon" href="./favicon.ico" type="image/x-icon" />
-  <title>PortFolio|Denis_Duranza_Diaz</title>
+  <title>CV|Denis_Duranza_Diaz</title>
 </head>
 
 <body>
@@ -124,7 +124,7 @@
             <path d="M9 10a.5 .5 0 0 0 1 0v-1a.5 .5 0 0 0 -1 0v1a5 5 0 0 0 5 5h1a.5 .5 0 0 0 0 -1h-1a.5 .5 0 0 0 0 1" />
           </svg>
           +53 54217834</span><br />
-        <span style="display: flex; align-items: center; font-size: x-large">
+        <span id="download" style="display: flex; align-items: center; font-size: x-large">
           <svg style="margin-right: 10px" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor"
             stroke-width="3" stroke-linecap="round" stroke-linejoin="round"
             class="icon icon-tabler icons-tabler-outline icon-tabler-download">
@@ -140,6 +140,40 @@
       </p>
     </article>
   </footer>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+
+  <script>
+    document.getElementById("btnPDF").addEventListener("click", () => {
+
+      const element = document.body;
+
+      const btn = document.getElementById("download");
+
+      btn.style.display = "none";
+
+      const opt = {
+        margin: 15,
+        filename: "CV_Denis_Duranza_Diaz.pdf",
+        image: { type: "jpeg", quality: 0.98 },
+        html2canvas: {
+          scale: 3,
+          useCORS: true,
+          scrollX: 0,
+          scrollY: 0
+        },
+        jsPDF: { unit: "mm", format: "a4", orientation: "portrait" },
+        pagebreak: { mode: ['avoid-all', 'css', 'legacy'] }
+      };
+
+      html2pdf()
+        .set(opt)
+        .from(element)
+        .save()
+        .finally(() => {
+          btn.style.display = "flex";
+        });
+    });
+  </script>
 </body>
 <style>
   body {
